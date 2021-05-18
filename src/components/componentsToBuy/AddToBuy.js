@@ -5,18 +5,18 @@ const AddToBuy = (props) => {
 
   const populars = [
     { text: "pommes", emoji: "🍏" },
+    { text: "crevettes", emoji: "🦐" },
     { text: "oinions", emoji: "🧅" },
     { text: "salade", emoji: "🥬" },
     { text: "café", emoji: "☕️" },
-    { text: "ail", emoji: "🧄" },
-    { text: "oranges", emoji: "🍊" },
-    { text: "riz", emoji: "🍚" },
+    { text: "thé", emoji: "🍵" },
     { text: "chocolat", emoji: "🍫" },
     { text: "avocat", emoji: "🥑" },
     { text: "vin", emoji: "🍷" },
-    { text: "kiwi", emoji: "🥝" },
     { text: "pq", emoji: "🧻" },
-    { text: "tomates", emoji: "🍅" }
+    { text: "tomates", emoji: "🍅" },
+    { text: "croquettes", emoji: "🐶" },
+    { text: "wisky", emoji: "🥃" },
   ]
 
   const handleFormSubmit = (event) => {

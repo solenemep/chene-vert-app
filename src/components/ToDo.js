@@ -8,7 +8,7 @@ const ToDo = (props) => {
   const { darkMode, children } = props
 
   // ToDos
-  const [toDoList, setToDoList] = useState(JSON.parse(localStorage.getItem('solenemhepTatiesToDo')) || [])
+  const [toDoList, setToDoList] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertToDo')) || [])
 
   const addToDo = (text) => {
     const newToDo = {
@@ -35,7 +35,7 @@ const ToDo = (props) => {
     )
   }
   useEffect(() => {
-    localStorage.setItem('solenemhepTatiesToDo', JSON.stringify(toDoList))
+    localStorage.setItem('solenemhepCheneVertToDo', JSON.stringify(toDoList))
   }, [toDoList])
 
   // Filter

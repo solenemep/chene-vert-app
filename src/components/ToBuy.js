@@ -7,8 +7,8 @@ import { v4 as uuidv4 } from "uuid"
 const ToBuy = (props) => {
   const { darkMode, children } = props
 
-  // ToDos
-  const [toBuyList, setToBuyList] = useState(JSON.parse(localStorage.getItem('solenemhepTatiesToBuy')) || [])
+  // ToBuys
+  const [toBuyList, setToBuyList] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertToBuy')) || [])
 
   const addToBuy = (text) => {
     const newToBuy = {
@@ -21,12 +21,11 @@ const ToBuy = (props) => {
     setToBuyList(toBuyList.filter((el) => el.id !== product.id))
   }
   useEffect(() => {
-    localStorage.setItem('solenemhepTatiesToBuy', JSON.stringify(toBuyList))
+    localStorage.setItem('solenemhepCheneVertToBuy', JSON.stringify(toBuyList))
   }, [toBuyList])
 
   // Filter
   const [filter, setFilter] = useState('')
-
 
   const filteredToBuyList = toBuyList.filter((el) =>
     el.text.trim().toLowerCase().startsWith(filter.trim().toLowerCase())

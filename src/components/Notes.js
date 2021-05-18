@@ -4,10 +4,10 @@ const Notes = (props) => {
   const { darkMode, children } = props
 
   // Notes
-  const [note, setNote] = useState(JSON.parse(localStorage.getItem('solenemhepTatiesNote')) || '')
+  const [note, setNote] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertNote')) || '')
 
   useEffect(() => {
-    localStorage.setItem('solenemhepTatiesNote', JSON.stringify(note))
+    localStorage.setItem('solenemhepCheneVertNote', JSON.stringify(note))
   }, [note])
 
   return (

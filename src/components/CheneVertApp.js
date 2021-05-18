@@ -6,30 +6,30 @@ import ToBuy from './ToBuy'
 import Notes from './Notes'
 
 
-const TatiesApp = () => {
+const CheneVertApp = () => {
 
   // DarkMode
-  const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('solenemhepTatiesDarkMode')) || false)
+  const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertDarkMode')) || false)
   const changeDarkMode = () => {
     setDarkMode(!darkMode)
   }
   useEffect(() => {
-    localStorage.setItem("solenemhepTatiesDarkMode", JSON.stringify(darkMode))
+    localStorage.setItem("solenemhepCheneVertDarkMode", JSON.stringify(darkMode))
   }
   )
 
   // Mode
-  const [mode, setMode] = useState(JSON.parse(localStorage.getItem('solenemhepTatiesMode')) || 'ToDo')
+  const [mode, setMode] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertMode')) || 'ToDo')
   const selectMode = (event) => {
     setMode(event.target.value)
   }
   useEffect(() => {
-    localStorage.setItem('solenemhepTatiesMode', JSON.stringify(mode), [mode])
+    localStorage.setItem('solenemhepCheneVertMode', JSON.stringify(mode), [mode])
   }
   )
 
   // Background
-  const backgroundImage = darkMode ? 'linear-gradient(to top, #330867 0%, #30cfd0 100%)' : 'linear-gradient(to top, rgb(255, 27, 27), rgb(255, 171, 96))'
+  const backgroundImage = darkMode ? 'linear-gradient(to top, #330867 0%, #30cfd0 100%)' : 'linear-gradient(to top, #12ff89, #a1ffce)'
   const style = {
     backgroundImage
   }
@@ -41,7 +41,7 @@ const TatiesApp = () => {
 
         <div className='d-flex flex-row justify-content-between align-items-center mb-3'>
           <DarkMode darkMode={darkMode} changeDarkMode={changeDarkMode} />
-          <h1 className='m-0'>TATIES<span role="img" aria-hidden>🥂</span> del Puente</h1>
+          <h1 className='m-0'>Chêne Vert <span role="img" aria-hidden>🌳</span></h1>
 
         </div>
 
@@ -49,19 +49,22 @@ const TatiesApp = () => {
 
         {mode === 'ToDo' && (
           <ToDo darkMode={darkMode}>
-            <h2 className="mb-3">Ma liste de tâches{' '}<span role="img" aria-hidden>✏️</span></h2>
+            <h2 className="mb-3">Ma liste de tâches{' '}<span role="img" aria-hidden>🛠</span></h2>
           </ToDo>)}
         {mode === 'ToBuy' && (
           <ToBuy darkMode={darkMode}>
-            <h2 className="mb-3">Ma liste de courses{' '}<span role="img" aria-hidden>🍇</span></h2>
+            <h2 className="mb-3">Ma liste de courses{' '}<span role="img" aria-hidden>🍋</span></h2>
           </ToBuy>)}
         {mode === 'Notes' && (
           <Notes darkMode={darkMode}>
-            <h2 className="mb-3">Mes notes{' '}<span role="img" aria-hidden>💭</span></h2>
+            <h2 className="mb-3">Mes notes{' '}<span role="img" aria-hidden>🦴</span></h2>
           </Notes>)}
+        <div className="text-end">
+          <img src="../RIO.png" alt="RIO entier" />
+        </div>
       </div>
 
     </main >
   );
 }
-export default TatiesApp
+export default CheneVertApp

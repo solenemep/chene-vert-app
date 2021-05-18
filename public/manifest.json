@@ -1,19 +1,19 @@
 {
-  "short_name": "Taties App",
-  "name": "App for my Taties",
+  "short_name": "Chêne Vert",
+  "name": "Chêne Vert Organisation",
   "icons": [
     {
-      "src": "taties.png",
+      "src": "chene-vert.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "taties.png",
+      "src": "chene-vert.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "taties.png",
+      "src": "chene-vert.png",
       "type": "image/png",
       "sizes": "512x512"
     }

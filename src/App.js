@@ -1,11 +1,11 @@
 import React from 'react'
-import TatiesApp from './components/TatiesApp'
+import CheneVertApp from './components/CheneVertApp'
 
 const App = () => {
 
   return (
     <React.Fragment>
-      <TatiesApp />
+      <CheneVertApp />
     </React.Fragment>
   )
 }
