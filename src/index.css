@@ -39,6 +39,6 @@ img {
 	transition: .3s ease-in-out;
 }
 img:hover {
-  -webkit-transform: rotate(15deg) scale(1.4);
-	transform: rotate(15deg) scale(1.4);
+  -webkit-transform: rotate(15deg) scale(1);
+	transform: rotate(15deg) scale(1);
 }
