@@ -3,12 +3,15 @@ export const noteReducer = (state, action) => {
     case "UPDATE":
       return {
         ...state,
-        note: action.payload
+        note: action.payload,
+        loading: false,
+        error: "",
       }
     case "FETCH_INIT":
       return {
         ...state,
         loading: true,
+        error: "",
       }
     case "FETCH_FAILURE":
       return {
@@ -19,11 +22,12 @@ export const noteReducer = (state, action) => {
     case "FETCH_SUCCESS":
       return {
         ...state,
+        note: action.payload,
         loading: false,
         error: "",
-        note: action.payload,
       }
     default:
       throw new Error(`Unsupported action type ${action.type} in noteReducer`)
   }
 }
+export default noteReducer

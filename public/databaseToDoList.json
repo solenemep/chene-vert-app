@@ -1,0 +1,34 @@
+{
+  "toDoList": [
+    {
+      "id": 1,
+      "text": "Create React App",
+      "isCompleted": true
+    },
+    {
+      "id": 3,
+      "text": "Ajouter une nouvelle tâches",
+      "isCompleted": true
+    },
+    {
+      "id": 4,
+      "text": "Supprimer une tâche",
+      "isCompleted": false
+    },
+    {
+      "id": 5,
+      "text": "Terminer/Rétablir",
+      "isCompleted": false
+    },
+    {
+      "text": "ffefe",
+      "isCompleted": true,
+      "id": 6
+    },
+    {
+      "text": "sfdfsdf",
+      "isCompleted": false,
+      "id": 7
+    }
+  ]
+}

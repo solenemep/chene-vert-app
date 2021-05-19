@@ -1,7 +1,10 @@
 import React from "react"
+import AddPopular from "./AddPopular"
+import { useIsMounted } from "/Users/solenepettier/Desktop/chene-vert-app/src/hook/useIsMounted.js"
 
 const AddToBuy = (props) => {
-  const { darkMode, toBuyList, addToBuy, setFilter } = props
+  const { darkMode, toBuyList, dispatch, setFilter } = props
+  const isMounted = useIsMounted()
 
   const populars = [
     { text: "pommes", emoji: "🍏" },
@@ -25,10 +28,34 @@ const AddToBuy = (props) => {
     if (toBuyList.some(el => el.text.trim().toLowerCase() === newToBuyText.trim().toLowerCase())) {
       alert(`${newToBuyText} is already on the list`)
     } else {
-      addToBuy(newToBuyText)
+      fetch(`http://localhost:4000/toBuyList`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: newToBuyText,
+        }),
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Something went wrong: ${response.textStatus}`)
+          }
+          return response.json()
+        })
+        .then(data => {
+          if (isMounted.current) {
+            dispatch({ type: "ADD", payload: data })
+          }
+        })
+        .catch(error => {
+          if (isMounted.current) {
+            dispatch({ type: "FETCH_FAILURE", payload: error.message })
+          }
+        })
+      event.target.reset()
+      setFilter('')
     }
-    event.target.reset()
-    setFilter('')
   }
 
   return (
@@ -47,19 +74,11 @@ const AddToBuy = (props) => {
       </form>
 
       <div className="m-3 d-flex flex-wrap">
-        {populars.map((popular) => (
-          <button
-            key={popular.text}
-            className={darkMode ? 'btn border-myblack btn-myblack text-white m-1' : 'btn border btn-light text-dark m-1'}
-            onClick={() => addToBuy(popular.text)}
-            disabled={toBuyList.some(el => el.text === popular.text)}
-          >
-            {popular.text}{" "}
-            <span role="img" aria-hidden>
-              {popular.emoji}
-            </span>
-          </button>
-        ))}
+        <label htmlFor="toBuy">
+          {populars.map((popular) => (
+            <AddPopular key={popular.text} darkMode={darkMode} toBuyList={toBuyList} dispatch={dispatch} setFilter={setFilter} popular={popular} />
+          ))}
+        </label>
       </div>
     </React.Fragment>
   )

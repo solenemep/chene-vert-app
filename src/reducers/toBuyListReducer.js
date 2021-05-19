@@ -3,17 +3,22 @@ export const toBuyListReducer = (state, action) => {
     case "ADD":
       return {
         ...state,
-        toBuyList: [...state.toBuyList, action.payload]
+        toBuyList: [...state.toBuyList, action.payload],
+        loading: false,
+        error: "",
       }
     case "DELETE":
       return {
         ...state,
         toBuyList: state.toBuyList.filter(el => el.id !== action.payload.id),
+        loading: false,
+        error: "",
       }
     case "FETCH_INIT":
       return {
         ...state,
         loading: true,
+        error: "",
       }
     case "FETCH_FAILURE":
       return {
@@ -24,11 +29,12 @@ export const toBuyListReducer = (state, action) => {
     case "FETCH_SUCCESS":
       return {
         ...state,
+        toBuyList: action.payload,
         loading: false,
         error: "",
-        toBuyList: action.payload,
       }
     default:
       throw new Error(`Unsupported action type ${action.type} in toBuyListReducer`)
   }
 }
+export default toBuyListReducer

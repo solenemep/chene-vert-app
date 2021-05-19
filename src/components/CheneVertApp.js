@@ -11,6 +11,7 @@ import Notes from './Notes'
 
 import RIOentier from "../images/RIOentier.png"
 import RIO from "../images/RIO.png"
+import freshgrass from "../images/freshgrass.jpg"
 
 const CheneVertApp = () => {
 
@@ -25,9 +26,13 @@ const CheneVertApp = () => {
   )
 
   // Background
-  const backgroundImage = darkMode ? 'linear-gradient(to top, #233F79, #2156Fe)' : 'linear-gradient(to top, #89ff89, #51ffce)'
+  const backgroundImage = darkMode ? `url(${freshgrass})` : 'linear-gradient(to top, #89ff89, #51ffce)'
+  const backgroundPosition = darkMode ? "center" : ''
+  const backgroundSize = darkMode ? 'cover' : ''
   const style = {
-    backgroundImage
+    backgroundImage,
+    backgroundPosition,
+    backgroundSize
   }
 
   return (
@@ -50,7 +55,7 @@ const CheneVertApp = () => {
             <main className="mb-3">
               <Switch>
                 <Route path="/HOME">
-                  <div className="text-center">
+                  <div className="text-center my-3">
                     <img src={RIOentier} alt="RIOentier" />
                   </div>
                 </Route>

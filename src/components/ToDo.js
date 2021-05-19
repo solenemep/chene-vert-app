@@ -1,46 +1,54 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useReducer } from "react"
 import SelectToDo from './componentsToDo/SelectToDo'
 import ToDoList from './componentsToDo/ToDoList'
 import AddToDo from './componentsToDo/AddToDo'
-import { v4 as uuidv4 } from "uuid"
+
+import toDoListReducer from '../reducers/toDoListReducer'
+import { useIsMounted } from "../hook/useIsMounted"
+
+const init = {
+  toDoList: [],
+  loading: false,
+  error: ""
+}
 
 const ToDo = (props) => {
   const { darkMode, children } = props
 
   // ToDos
-  const [toDoList, setToDoList] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertToDo')) || [])
+  const [state, dispatch] = useReducer(toDoListReducer, init)
+  const { toDoList, loading, error } = state
+  const isMounted = useIsMounted()
 
-  const addToDo = (text) => {
-    const newToDo = {
-      text,
-      isCompleted: false,
-      id: uuidv4()
-    }
-    setToDoList([...toDoList, newToDo])
-  }
-  const deleteToDo = (task) => {
-    setToDoList(toDoList.filter((el) => el.id !== task.id))
-  }
-  const completeToDo = (task) => {
-    setToDoList(
-      toDoList.map((el) => {
-        if (el.id === task.id) {
-          return {
-            ...el,
-            isCompleted: !el.isCompleted
-          }
-        }
-        return el
-      })
-    )
-  }
   useEffect(() => {
-    localStorage.setItem('solenemhepCheneVertToDo', JSON.stringify(toDoList))
-  }, [toDoList])
+    dispatch({ type: "FETCH_INIT" })
+    fetch("http://localhost:4000/toDoList")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Something went wrong: ${response.statusText}`)
+        }
+        return response.json()
+      })
+      .then(data => {
+        if (isMounted.current) {
+          dispatch({ type: "FETCH_SUCCESS", payload: data })
+        }
+      })
+      .catch(error => {
+        if (isMounted.current) {
+          dispatch({ type: "FETCH_FAILURE", payload: error.message })
+        }
+      })
+  }, [isMounted])
 
   // Filter
-  const [filter, setFilter] = useState("all")
-  const filteredToDoList = toDoList.filter((el) => {
+  const [filter, setFilter] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertFilter')) || "all")
+  useEffect(() => {
+    localStorage.setItem("solenemhepCheneVertFilter", JSON.stringify(filter))
+  }
+  )
+
+  const filteredToDoList = state.toDoList.filter((el) => {
     if (filter === "completed") {
       return el.isCompleted
     }
@@ -53,10 +61,12 @@ const ToDo = (props) => {
   return (
     <React.Fragment>
       {children}
+      {error && <p className="alert-danger">{error}</p>}
+      {loading && <p>Loading...</p>}
       <AddToDo
         darkMode={darkMode}
         toDoList={toDoList}
-        addToDo={addToDo}
+        dispatch={dispatch}
         setFilter={setFilter} />
 
       <SelectToDo
@@ -69,8 +79,7 @@ const ToDo = (props) => {
           <ToDoList
             darkMode={darkMode}
             toDoList={filteredToDoList}
-            deleteToDo={deleteToDo}
-            completeToDo={completeToDo} />
+            dispatch={dispatch} />
         </ul>
       </div>
     </React.Fragment>

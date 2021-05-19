@@ -3,12 +3,16 @@ export const toDoListReducer = (state, action) => {
     case "ADD":
       return {
         ...state,
-        toDoList: [...state.toDoList, action.payload]
+        toDoList: [...state.toDoList, action.payload],
+        loading: false,
+        error: "",
       }
     case "DELETE":
       return {
         ...state,
         toDoList: state.toDoList.filter(el => el.id !== action.payload.id),
+        loading: false,
+        error: "",
       }
     case "TOGGLE":
       return {
@@ -22,11 +26,14 @@ export const toDoListReducer = (state, action) => {
           }
           return el
         }),
+        loading: false,
+        error: "",
       }
     case "FETCH_INIT":
       return {
         ...state,
         loading: true,
+        error: "",
       }
     case "FETCH_FAILURE":
       return {
@@ -37,11 +44,12 @@ export const toDoListReducer = (state, action) => {
     case "FETCH_SUCCESS":
       return {
         ...state,
+        toDoList: action.payload,
         loading: false,
         error: "",
-        toDoList: action.payload,
       }
     default:
-      throw new Error(`Unsupported action type ${action.type} in toBuyListReducer`)
+      throw new Error(`Unsupported action type ${action.type} in toDoListReducer`)
   }
 }
+export default toDoListReducer

@@ -1,28 +1,45 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useReducer } from "react"
 import SelectToBuy from './componentsToBuy/SelectToBuy'
 import ToBuyList from './componentsToBuy/ToBuyList'
 import AddToBuy from './componentsToBuy/AddToBuy'
-import { v4 as uuidv4 } from "uuid"
+
+import toBuyListReducer from '../reducers/toBuyListReducer'
+import { useIsMounted } from "../hook/useIsMounted"
+
+const init = {
+  toBuyList: [],
+  loading: false,
+  error: ""
+}
 
 const ToBuy = (props) => {
   const { darkMode, children } = props
 
   // ToBuys
-  const [toBuyList, setToBuyList] = useState(JSON.parse(localStorage.getItem('solenemhepCheneVertToBuy')) || [])
+  const [state, dispatch] = useReducer(toBuyListReducer, init)
+  const { toBuyList, loading, error } = state
+  const isMounted = useIsMounted()
 
-  const addToBuy = (text) => {
-    const newToBuy = {
-      text,
-      id: uuidv4()
-    }
-    setToBuyList([...toBuyList, newToBuy])
-  }
-  const deleteToBuy = (product) => {
-    setToBuyList(toBuyList.filter((el) => el.id !== product.id))
-  }
   useEffect(() => {
-    localStorage.setItem('solenemhepCheneVertToBuy', JSON.stringify(toBuyList))
-  }, [toBuyList])
+    dispatch({ type: "FETCH_INIT" })
+    fetch("http://localhost:4000/toBuyList")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Something went wrong: ${response.statusText}`)
+        }
+        return response.json()
+      })
+      .then(data => {
+        if (isMounted.current) {
+          dispatch({ type: "FETCH_SUCCESS", payload: data })
+        }
+      })
+      .catch(error => {
+        if (isMounted.current) {
+          dispatch({ type: "FETCH_FAILURE", payload: error.message })
+        }
+      })
+  }, [isMounted])
 
   // Filter
   const [filter, setFilter] = useState('')
@@ -34,10 +51,12 @@ const ToBuy = (props) => {
   return (
     <React.Fragment>
       {children}
+      {error && <p className="alert-danger">{error}</p>}
+      {loading && <p>Loading...</p>}
       <AddToBuy
         darkMode={darkMode}
         toBuyList={toBuyList}
-        addToBuy={addToBuy}
+        dispatch={dispatch}
         setFilter={setFilter} />
 
       <SelectToBuy
@@ -50,7 +69,7 @@ const ToBuy = (props) => {
           <ToBuyList
             darkMode={darkMode}
             toBuyList={filteredToBuyList}
-            deleteToBuy={deleteToBuy} />
+            dispatch={dispatch} />
         </ul>
       </div>
     </React.Fragment>
