@@ -4,7 +4,7 @@ import noteReducer from '../reducers/noteReducer'
 import { useIsMounted } from "../hook/useIsMounted"
 
 const init = {
-  note: "",
+  note: { text: "" },
   loading: false,
   error: ""
 }
@@ -17,7 +17,7 @@ const Notes = (props) => {
 
   useEffect(() => {
     dispatch({ type: "FETCH_INIT" })
-    fetch("")
+    fetch("http://localhost:4000/note")
       .then(response => {
         if (!response.ok) {
           throw new Error(`Something went wrong: ${response.statusText}`)
@@ -39,8 +39,8 @@ const Notes = (props) => {
   const updateNote = (event) => {
     event.preventDefault()
     const newNote = event.target.value
-    fetch(``, {
-      method: "POST",
+    fetch(`http://localhost:4000/note`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -56,7 +56,7 @@ const Notes = (props) => {
       })
       .then(data => {
         if (isMounted.current) {
-          dispatch({ type: "ADD", payload: data.toBuyList })
+          dispatch({ type: "UPDATE", payload: data })
         }
       })
       .catch(error => {
@@ -75,13 +75,13 @@ const Notes = (props) => {
       <form>
         <label htmlFor="note" className="d-flex">
           <textarea
+            defaultValue={note.text}
             id="note"
             name="note"
-            value={note}
-            rows='16'
             onChange={updateNote}
-            className={darkMode ? 'form-control form-control-lg border-myblack bg-dark text-white' : 'form-control form-control-lg border bg-white text-dark'}
-          /></label>
+            rows='16'
+            className={darkMode ? 'form-control form-control-lg border-myblack bg-dark text-white' : 'form-control form-control-lg border bg-white text-dark'} />
+        </label>
       </form>
     </React.Fragment>
   )
