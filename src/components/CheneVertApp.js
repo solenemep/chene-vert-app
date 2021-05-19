@@ -25,6 +25,9 @@ const CheneVertApp = () => {
   }
   )
 
+  // Mode
+  const [mode, setMode] = useState('')
+
   // Background
   const backgroundImage = darkMode ? `url(${freshgrass})` : 'linear-gradient(to top, #89ff89, #51ffce)'
   const backgroundPosition = darkMode ? "center" : ''
@@ -43,14 +46,14 @@ const CheneVertApp = () => {
           <div>
             <header className='d-flex flex-row justify-content-between align-items-center mb-3'>
               <DarkMode darkMode={darkMode} changeDarkMode={changeDarkMode} />
-              <Link to="/HOME" className={darkMode ? "text-decoration-none text-white" : "text-decoration-none text-dark"}>
+              <Link onClick={() => setMode('')} to="/HOME" className={darkMode ? "text-decoration-none text-white" : "text-decoration-none text-dark"}>
                 <h1 className='m-0'>Chêne Vert
                 <img src={RIO} alt="chenevert" width="50" height="50" />
                 </h1>
               </Link>
             </header>
 
-            <Navigation darkMode={darkMode} />
+            <Navigation darkMode={darkMode} mode={mode} setMode={setMode} />
 
             <main className="mb-3">
               <Switch>
