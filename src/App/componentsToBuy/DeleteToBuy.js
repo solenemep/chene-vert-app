@@ -5,7 +5,7 @@ const DeleteToBuy = (props) => {
   const isMounted = useIsMounted()
 
   const deleteToBuy = () => {
-    fetch(`http://localhost:4000/toBuyList/${el.id}`, {
+    fetch(`https://chene-vert-api.herokuapp.com/toBuyList/${el.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

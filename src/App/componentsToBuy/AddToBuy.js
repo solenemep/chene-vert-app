@@ -28,7 +28,7 @@ const AddToBuy = (props) => {
     if (toBuyList.some(el => el.text.trim().toLowerCase() === newToBuyText.trim().toLowerCase())) {
       alert(`${newToBuyText} is already on the list`)
     } else {
-      fetch(`http://localhost:4000/toBuyList`, {
+      fetch(`https://chene-vert-api.herokuapp.com/toBuyList`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

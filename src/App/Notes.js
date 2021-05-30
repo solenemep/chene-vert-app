@@ -39,7 +39,7 @@ const Notes = (props) => {
   const updateNote = (event) => {
     event.preventDefault()
     const newNote = event.target.value
-    fetch(`http://localhost:4000/note`, {
+    fetch(`https://chene-vert-api.herokuapp.com/note`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

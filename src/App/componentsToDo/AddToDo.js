@@ -11,7 +11,7 @@ const AddToDo = (props) => {
     if (toDoList.some(el => el.text.trim().toLowerCase() === newToDoText.trim().toLowerCase())) {
       alert(`${newToDoText} is already on the list`)
     } else {
-      fetch(`http://localhost:4000/toDoList`, {
+      fetch(`https://chene-vert-api.herokuapp.com/toDoList`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -6,7 +6,7 @@ const AddPopular = (props) => {
 
   const addToBuy = () => {
     const newToBuyText = popular.text
-    fetch(`http://localhost:4000/toBuyList`, {
+    fetch(`https://chene-vert-api.herokuapp.com/toBuyList`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

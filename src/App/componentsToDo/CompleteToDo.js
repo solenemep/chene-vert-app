@@ -5,7 +5,7 @@ const CompleteToDo = (props) => {
   const isMounted = useIsMounted()
 
   const completeToDo = () => {
-    fetch(`http://localhost:4000/toDoList/${el.id}`, {
+    fetch(`https://chene-vert-api.herokuapp.com/toDoList/${el.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

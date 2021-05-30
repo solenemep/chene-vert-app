@@ -5,7 +5,7 @@ const DeleteToDo = (props) => {
   const isMounted = useIsMounted()
 
   const deleteToDo = () => {
-    fetch(`http://localhost:4000/toDoList/${el.id}`, {
+    fetch(`https://chene-vert-api.herokuapp.com/toDoList/${el.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
