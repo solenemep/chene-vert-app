@@ -40,7 +40,7 @@ const AddPopular = (props) => {
       value={popular.text}
       className={darkMode ? 'btn border-myblack btn-myblack text-white m-1' : 'btn border btn-light text-dark m-1'}
       onClick={addToBuy}
-      disabled={toBuyList.some(el => el.text === popular.text)}
+      disabled={toBuyList.some(el => el.text.trim().toLowerCase() === popular.text.trim().toLowerCase())}
     >
       {popular.text}{" "}
       <span role="img" aria-hidden>
