@@ -79,7 +79,7 @@ const Notes = (props) => {
             id="note"
             name="note"
             onChange={updateNote}
-            rows='16'
+            rows='14'
             className={darkMode ? 'form-control form-control-lg border-myblack bg-dark text-white' : 'form-control form-control-lg border bg-white text-dark'} />
         </label>
       </form>

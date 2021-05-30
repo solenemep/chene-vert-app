@@ -41,7 +41,7 @@ const CheneVertApp = () => {
           <div>
             <header className='d-flex flex-row justify-content-between align-items-center mb-3'>
               <DarkMode darkMode={darkMode} changeDarkMode={changeDarkMode} />
-              <Link onClick={() => setMode('')} to="/HOME" className={darkMode ? "text-decoration-none text-white" : "text-decoration-none text-dark"}>
+              <Link onClick={() => setMode('')} to="/" className={darkMode ? "text-decoration-none text-white" : "text-decoration-none text-dark"}>
                 <h1 className='m-0'>Chêne Vert
                 <img src={RIO} alt="chenevert" width="50" height="50" />
                 </h1>
@@ -52,9 +52,9 @@ const CheneVertApp = () => {
 
             <main className="mb-3">
               <Switch>
-                <Route path="/HOME">
+                <Route exact path="/">
                   <div className="text-center my-3">
-                    <img src={RIOentier} alt="RIOentier" />
+                    <img src={RIOentier} height="300" width="auto" alt="RIOentier" />
                   </div>
                 </Route>
                 <Route path="/TODO">
