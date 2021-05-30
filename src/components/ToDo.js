@@ -22,7 +22,7 @@ const ToDo = (props) => {
 
   useEffect(() => {
     dispatch({ type: "FETCH_INIT" })
-    fetch("http://localhost:4000/toDoList")
+    fetch("https://chene-vert-api.herokuapp.com/toDoList")
       .then(response => {
         if (!response.ok) {
           throw new Error(`Something went wrong: ${response.statusText}`)

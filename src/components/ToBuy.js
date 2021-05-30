@@ -22,7 +22,7 @@ const ToBuy = (props) => {
 
   useEffect(() => {
     dispatch({ type: "FETCH_INIT" })
-    fetch("http://localhost:4000/toBuyList")
+    fetch("https://chene-vert-api.herokuapp.com/toBuyList")
       .then(response => {
         if (!response.ok) {
           throw new Error(`Something went wrong: ${response.statusText}`)

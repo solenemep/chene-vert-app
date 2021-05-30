@@ -17,7 +17,7 @@ const Notes = (props) => {
 
   useEffect(() => {
     dispatch({ type: "FETCH_INIT" })
-    fetch("http://localhost:4000/note")
+    fetch("https://chene-vert-api.herokuapp.com/note")
       .then(response => {
         if (!response.ok) {
           throw new Error(`Something went wrong: ${response.statusText}`)
