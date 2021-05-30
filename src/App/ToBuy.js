@@ -3,8 +3,8 @@ import SelectToBuy from './componentsToBuy/SelectToBuy'
 import ToBuyList from './componentsToBuy/ToBuyList'
 import AddToBuy from './componentsToBuy/AddToBuy'
 
-import toBuyListReducer from '../reducers/toBuyListReducer'
-import { useIsMounted } from "../hook/useIsMounted"
+import toBuyListReducer from './reducers/toBuyListReducer'
+import { useIsMounted } from "./hook/useIsMounted"
 
 const init = {
   toBuyList: [],

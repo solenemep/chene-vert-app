@@ -1,4 +1,4 @@
-import { useIsMounted } from "/Users/solenepettier/Desktop/chene-vert-app/src/hook/useIsMounted.js"
+import { useIsMounted } from "../hook/useIsMounted.js"
 
 const AddPopular = (props) => {
   const { darkMode, toBuyList, dispatch, setFilter, popular } = props

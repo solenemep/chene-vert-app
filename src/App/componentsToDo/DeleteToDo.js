@@ -1,11 +1,11 @@
-import { useIsMounted } from "/Users/solenepettier/Desktop/chene-vert-app/src/hook/useIsMounted.js"
+import { useIsMounted } from "../hook/useIsMounted.js"
 
-const DeleteToBuy = (props) => {
+const DeleteToDo = (props) => {
   const { dispatch, el } = props
   const isMounted = useIsMounted()
 
-  const deleteToBuy = () => {
-    fetch(`http://localhost:4000/toBuyList/${el.id}`, {
+  const deleteToDo = () => {
+    fetch(`http://localhost:4000/toDoList/${el.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -31,10 +31,11 @@ const DeleteToBuy = (props) => {
 
   return (
     <button
-      className="btn btn-sm btn-warning"
-      onClick={deleteToBuy}>
-      <span role="img" aria-hidden>✖️</span>{" "}ok
+      className="btn btn-danger btn-sm"
+      type="button"
+      onClick={deleteToDo}>
+      <span role="img" aria-hidden>✖️</span>
     </button>
   )
 }
-export default DeleteToBuy
+export default DeleteToDo

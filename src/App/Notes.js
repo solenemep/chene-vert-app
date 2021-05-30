@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 
-import noteReducer from '../reducers/noteReducer'
-import { useIsMounted } from "../hook/useIsMounted"
+import noteReducer from './reducers/noteReducer'
+import { useIsMounted } from "./hook/useIsMounted"
 
 const init = {
   note: { text: "" },

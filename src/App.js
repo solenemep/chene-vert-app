@@ -1,5 +1,5 @@
 import React from 'react'
-import CheneVertApp from './components/CheneVertApp'
+import CheneVertApp from './App/CheneVertApp'
 
 const App = () => {
 

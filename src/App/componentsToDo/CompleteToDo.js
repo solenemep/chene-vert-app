@@ -1,4 +1,4 @@
-import { useIsMounted } from "/Users/solenepettier/Desktop/chene-vert-app/src/hook/useIsMounted.js"
+import { useIsMounted } from "../hook/useIsMounted.js"
 
 const CompleteToDo = (props) => {
   const { dispatch, el } = props

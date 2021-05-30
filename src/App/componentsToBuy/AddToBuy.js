@@ -1,6 +1,6 @@
 import React from "react"
 import AddPopular from "./AddPopular"
-import { useIsMounted } from "/Users/solenepettier/Desktop/chene-vert-app/src/hook/useIsMounted.js"
+import { useIsMounted } from "../hook/useIsMounted.js"
 
 const AddToBuy = (props) => {
   const { darkMode, toBuyList, dispatch, setFilter } = props

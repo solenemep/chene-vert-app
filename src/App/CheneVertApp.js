@@ -9,8 +9,8 @@ import ToDo from './ToDo'
 import ToBuy from './ToBuy'
 import Notes from './Notes'
 
-import RIOentier from "../images/RIOentier.png"
-import RIO from "../images/RIO.png"
+import RIOentier from "./images/RIOentier.png"
+import RIO from "./images/RIO.png"
 
 const CheneVertApp = () => {
 

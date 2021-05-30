@@ -3,8 +3,8 @@ import SelectToDo from './componentsToDo/SelectToDo'
 import ToDoList from './componentsToDo/ToDoList'
 import AddToDo from './componentsToDo/AddToDo'
 
-import toDoListReducer from '../reducers/toDoListReducer'
-import { useIsMounted } from "../hook/useIsMounted"
+import toDoListReducer from './reducers/toDoListReducer'
+import { useIsMounted } from "./hook/useIsMounted"
 
 const init = {
   toDoList: [],

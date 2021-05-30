@@ -1,5 +1,5 @@
 import React from "react"
-import { useIsMounted } from "/Users/solenepettier/Desktop/chene-vert-app/src/hook/useIsMounted.js"
+import { useIsMounted } from "../hook/useIsMounted"
 
 const AddToDo = (props) => {
   const { darkMode, toDoList, dispatch, setFilter } = props
